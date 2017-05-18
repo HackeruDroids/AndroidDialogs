@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View fab) {
         //Hello!!!
+        new LoginFragment().show(getSupportFragmentManager(), "loginFragment");
     }
 
     @Override
