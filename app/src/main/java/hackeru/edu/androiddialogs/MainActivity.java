@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton fab;
@@ -27,17 +29,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View fab) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false); // can't dismiss...
         //1)
         /*
         View dialogView =  getLayoutInflater().inflate(R.layout.dialog_content, null, false);
         builder.setView(dialogView);
         */
-
-
         //2)
         builder.setView(R.layout.dialog_content);
 
-        builder.show();
+        final AlertDialog dialog = builder.show();
+        EditText etUserName = (EditText) dialog.findViewById(R.id.etUserName);
+        EditText etPassword = (EditText) dialog.findViewById(R.id.etPassword);
+        Button btnSignIn = (Button) dialog.findViewById(R.id.btnSignIn);
+        Button btnCancel = (Button)dialog.findViewById(R.id.btnCancel);
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
     }
 
     @Override
