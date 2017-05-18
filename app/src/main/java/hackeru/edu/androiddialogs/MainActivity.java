@@ -29,45 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View fab) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false); // can't dismiss...
-        //1)
-        /*
-        View dialogView =  getLayoutInflater().inflate(R.layout.dialog_content, null, false);
-        builder.setView(dialogView);
-        */
-        //2)
-        builder.setView(R.layout.dialog_content);
-
-        final AlertDialog dialog = builder.show();
-        final EditText etUserName = (EditText) dialog.findViewById(R.id.etUserName);
-        EditText etPassword = (EditText) dialog.findViewById(R.id.etPassword);
-
-        Button btnSignIn = (Button) dialog.findViewById(R.id.btnSignIn);
-        Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
-
-        assert btnSignIn != null;
-        assert btnCancel != null;
-        assert etUserName != null;
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userName = etUserName.getText().toString();
-                if (userName.length() <= 3) {
-                    etUserName.setError("Must be at 3 least characters");
-                    return;
-                }
-                Toast.makeText(MainActivity.this, etUserName.getText(), Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
+        //Hello!!!
     }
 
     @Override
