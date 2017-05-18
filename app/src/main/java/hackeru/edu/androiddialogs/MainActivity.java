@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FloatingActionButton fab;
@@ -39,10 +40,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setView(R.layout.dialog_content);
 
         final AlertDialog dialog = builder.show();
-        EditText etUserName = (EditText) dialog.findViewById(R.id.etUserName);
+        final EditText etUserName = (EditText) dialog.findViewById(R.id.etUserName);
         EditText etPassword = (EditText) dialog.findViewById(R.id.etPassword);
+
         Button btnSignIn = (Button) dialog.findViewById(R.id.btnSignIn);
-        Button btnCancel = (Button)dialog.findViewById(R.id.btnCancel);
+        Button btnCancel = (Button) dialog.findViewById(R.id.btnCancel);
+
+        assert btnSignIn != null;
+        assert btnCancel != null;
+        assert etUserName != null;
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String userName = etUserName.getText().toString();
+                if (userName.length() <= 3) {
+                    etUserName.setError("Must be at 3 least characters");
+                    return;
+                }
+                Toast.makeText(MainActivity.this, etUserName.getText(), Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
